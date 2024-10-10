@@ -7,7 +7,7 @@
       apt:
         update_cache: yes
 
-     - name: Install Java on Debian/Ubuntu
+    - name: Install Java on Debian/Ubuntu
       apt:
         name: openjdk-8-jdk
         state: present
