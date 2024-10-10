@@ -1,0 +1,31 @@
+---
+- name: Install PostgreSQL
+  hosts: all
+  become: yes
+  tasks:
+    - name: Update package index (Debian/Ubuntu)
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Install PostgreSQL on Debian/Ubuntu
+      apt:
+        name: postgresql
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Install PostgreSQL on RHEL/CentOS
+      yum:
+        name: postgresql-server
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Initialize PostgreSQL database (RHEL/CentOS)
+      command: /usr/bin/postgresql-setup initdb
+      when: ansible_os_family == "RedHat"
+
+    - name: Start PostgreSQL service
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
