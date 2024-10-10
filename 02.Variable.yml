@@ -3,7 +3,7 @@
 - name: Variable Demo Playbook
   hosts: all
   vars:
-    greeting: "Hello"
+    greeting: "My"
     target: "World"
   tasks:
     - name: Print greeting message using variables
