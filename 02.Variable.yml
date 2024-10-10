@@ -1,0 +1,11 @@
+# variable-demo.yml
+---
+- name: Variable Demo Playbook
+  hosts: all
+  vars:
+    greeting: "Hello"
+    target: "World"
+  tasks:
+    - name: Print greeting message using variables
+      debug:
+        msg: "{{ greeting }} {{ target }}!"
