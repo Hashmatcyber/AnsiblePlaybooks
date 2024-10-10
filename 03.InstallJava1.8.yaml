@@ -3,6 +3,10 @@
   hosts: all
   become: yes
   tasks:
+    - name: Update APT package index
+      apt:
+        update_cache: yes
+        
     - name: Install Java 1.8
       package:
         name: "{{ item }}"
